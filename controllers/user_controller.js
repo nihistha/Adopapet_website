@@ -45,6 +45,53 @@ const createUser = async ({ body }, res) => {
 
 }
 
+const loginUser = async(req,res)=>{
+    console.log(req.body)
+    const{email,password} = req.body;
+    if(!email|| !password){
+        return res.status(400).json({
+            "sucess" : false,
+            "message" : "Please enter all fields"
+        })
+    }
+    try {
+        const user = await userModel.findOne({email : email})
+        if(!user){
+            return res.status(404).json({
+                "success" : false,
+                "message" : "User Not found"
+            })
+        }
+
+        const isValidPassword = await bcrypt.compare(password,user.password)
+        if(!isValidPassword){
+            return res.status(401).json({
+                "success" : false,
+                "message" : "Incorrect password"
+            })
+        }
+
+        const token = jwt.sign(
+            {id: user._id},
+            process.env.JWT_SECRET
+        )
+        
+        res.status(200).json({
+            "success" : true,
+            "message" : "Login successful",
+            "token" : token,
+            "userData" : user
+        })
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({
+            "success" : false,
+            "message" : "Internal server error"
+        })
+    }
+}
+
 module.exports = {
-    createUser
+    createUser,
+    loginUser
 }
