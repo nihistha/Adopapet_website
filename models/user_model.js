@@ -6,9 +6,8 @@ const user_schema = new mongoose.Schema({
         required : true
     },
     phonenumber : {
-        type : Number,
+        type : String,
         required: true,
-        match: [/^\+?[0-9\s-]{7,15}$/, 'Please enter a valid phone number']
     },
     email: {
         type : String,
