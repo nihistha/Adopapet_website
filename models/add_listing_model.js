@@ -25,7 +25,10 @@ const addListingSchema = new mongoose.Schema({
         type : String,
         required : true
     },
-
+    petImage : {
+        type: String ,
+        required : true
+    }   
 })
 
 const pet_listing = mongoose.model("pet",addListingSchema);

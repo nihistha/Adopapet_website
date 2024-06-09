@@ -2,8 +2,8 @@ const userModel = require("../models/user_model")
 const bcrypt = require("bcrypt")
 const jwt = require("jsonwebtoken")
 
-const createUser = async ({ body }, res) => {
-    const { fullname,phonenumber, email, password } = body; // destructuring the data
+const createUser = async (req, res) => {
+    const { fullname,phonenumber, email, password } = req.body; // destructuring the data
 
     //validation
     if(!fullname || !phonenumber || !email || !password){
