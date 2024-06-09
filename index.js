@@ -37,6 +37,9 @@ app.get('/test',(req,res)=>{
 //CREATE USER API
 app.use('/api/user',require('./routes/user_routes'))
 
+//CREATE Admin API
+app.use('/api/pets',require('./routes/petlisting_route'))
+
 //creating the server
 app.listen(PORT,()=>{
     console.log(`Server is running on port server ${PORT}`  )
