@@ -1,7 +1,8 @@
 const petListingModel = require("../models/add_listing_model.js")
+const path = require('path')
 
 const createListing = async(req,res) => {
-    const {petName, petType, breed, gender, size, aboutPet,petImage} = req.body
+    const {petName, petType, breed, gender, size, aboutPet} = req.body
         
         //validation
         if(!petName || !petType || !breed || !gender ||!size|| !aboutPet){
@@ -18,10 +19,10 @@ const createListing = async(req,res) => {
             })
         }
 
-        const {productImage} = req.files;
+        const {petImage} = req.files;
         //Uploading
         // Generate unique name for photos
-        const imageName = `${Date.now()}-${productImage.name}`
+        const imageName = `${Date.now()}-${petImage.name}`
 
         // definw specific path
         const imageUploadPath = path.join(__dirname,`../public/listings/${imageName}`)
@@ -30,7 +31,8 @@ const createListing = async(req,res) => {
             // res.send("Image uploaded")
             const pet = new petListingModel({
                 petName: petName,
-                petImage : petType,
+
+                petType : petType,
                 breed: breed,
                 gender: gender,
                 size: size,

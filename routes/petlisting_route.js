@@ -4,4 +4,4 @@ const listingscontroller = require("../controllers/add_listing_controller")
 
 router.post('/create',listingscontroller.createListing)
 
-module.exports(router)
+module.exports = router;
