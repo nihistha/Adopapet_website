@@ -56,7 +56,23 @@ const createListing = async(req,res) => {
         }
 
 }
+const getAllListing = async (req, res) => {
+    //try catch
+
+    //find all the products
+    //send response
+    try {
+        const listings = await petListingModel.find({})
+        res.status(201).json({
+            "success": true,
+            "message": "listings fetched successfully",
+            "listings": listings
+        })
+    } catch (error) {
+        console.log("error")
+    }
+}
 
 module.exports = {
-    createListing,
+    createListing,getAllListing,
 }
