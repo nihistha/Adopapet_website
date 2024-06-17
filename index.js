@@ -14,6 +14,8 @@ app.use(express.json());
 
 app.use(fileUpload());
 
+app.use(express.static('./public'))
+
 const corsOptions = {
     origin: true,
     credentials : true,

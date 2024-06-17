@@ -2,6 +2,8 @@ const petListingModel = require("../models/add_listing_model.js")
 const path = require('path')
 
 const createListing = async(req,res) => {
+    console.log(req.files)
+
     const {petName, petType, breed, gender, size, aboutPet} = req.body
         
         //validation
@@ -72,7 +74,69 @@ const getAllListing = async (req, res) => {
         console.log("error")
     }
 }
+const getListing = async (req, res) => {
 
+    //receive id from URL
+    const listingId = req.params.id;
+    try {
+        const listing = await petListingModel.findById(listingId)
+        res.status(201).json({
+            success: true,
+            message: "Listing fetched!",
+            listing: listing
+        })
+
+
+    } catch (error) {
+        console.log(error)
+        res.json({
+            success: false,
+            message: "Server Error"
+        })
+    }
+}
+
+const updateListing = async (req, res) => {
+    try {
+        // if there are files, upload new and delete old
+        if (req.files && req.files.petImage) {
+
+            //upload new to /public/products
+            const { petImage } = req.files;
+
+            //make a new image name
+            const imageName = `${Date.now()}-${petImage.name}`
+
+            const imageUploadPath = path.join(__dirname, `../public/listings/${imageName}`)
+
+            await petImage.mv(imageUploadPath)
+
+            req.body.petImage = imageName;
+
+            const existingListing = await petListingModel.findById(req.params.id)
+
+            if (req.body.petImage) {
+                const oldImagePath = path.join(__dirname, `../public/listings/${existingListing.petImage}`)
+                fs.unlinkSync(oldImagePath)
+            }
+        }
+        const updated = await petListingModel.findByIdAndUpdate(req.params.id, req.body)
+
+        res.status(201).json({
+            success: true,
+            message: "Listing Updated",
+            updatedListing: updated
+        })
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({
+            success: false,
+            message: "Internal server error",
+            error: error
+
+        })
+    }
+}
 module.exports = {
-    createListing,getAllListing,
+    createListing,getAllListing,getListing,updateListing,
 }
