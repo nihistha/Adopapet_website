@@ -1,8 +1,9 @@
 const petListingModel = require("../models/add_listing_model.js")
 const path = require('path')
+const fs = require("fs")
 
 const createListing = async(req,res) => {
-    console.log(req.files)
+    
 
     const {petName, petType, breed, gender, size, aboutPet} = req.body
         
@@ -58,6 +59,27 @@ const createListing = async(req,res) => {
         }
 
 }
+
+const deleteListing = async (req, res) => {
+
+    const id = req.params.id;
+
+    try {
+        await petListingModel.findByIdAndDelete(id)
+        res.status(201).json({
+            success: true,
+            message: "Listing deleted"
+        })
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({
+            success: false,
+            message: "Internal Server Error"
+        })
+    }
+}
+
+
 const getAllListing = async (req, res) => {
     //try catch
 
@@ -97,6 +119,7 @@ const getListing = async (req, res) => {
 }
 
 const updateListing = async (req, res) => {
+    console.log(req.body)
     try {
         // if there are files, upload new and delete old
         if (req.files && req.files.petImage) {
@@ -138,5 +161,5 @@ const updateListing = async (req, res) => {
     }
 }
 module.exports = {
-    createListing,getAllListing,getListing,updateListing,
+    createListing,getAllListing,getListing,updateListing,deleteListing
 }
