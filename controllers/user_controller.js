@@ -3,6 +3,7 @@ const bcrypt = require("bcrypt")
 const jwt = require("jsonwebtoken")
 
 const createUser = async (req, res) => {
+    console.log("hiiiiiiit mf")
     const { fullname,phonenumber, email, password } = req.body; // destructuring the data
 
     //validation
