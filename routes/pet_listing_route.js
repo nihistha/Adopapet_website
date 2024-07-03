@@ -8,4 +8,6 @@ router.get('/get_all_listings',listingscontroller.getAllListing)
 router.delete('/delete_listing/:id',listingscontroller.deleteListing)
 router.put('/updatelisting/:id',listingscontroller.updateListing)
 router.get('/get_only_listing',listingscontroller.getOnlyListing)
+
+router.get('/pagination',listingscontroller.pagiantion)
 module.exports = router;

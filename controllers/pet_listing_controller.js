@@ -168,6 +168,36 @@ const updateListing = async (req, res) => {
         })
     }
 }
+const pagiantion = async (req,res) => {
+    const resultPerPage = 8;
+
+    const pageNo = req.query.page;
+
+    try {
+        const listings = await petListingModel.find({})
+        .skip((pageNo - 1) * resultPerPage)
+        .limit(resultPerPage)
+
+        if(listings.length === 0){
+            return res.status(400).json({
+                "success" : false,
+                "message" : "No listings Found"
+            })
+        }
+
+        res.status(200).json({
+            "success" : true,
+            "message" : "listings fetched",
+            "listings": listings
+        })
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({
+            "success" : false,
+            "message" : "Internal Server error"
+        })
+    }
+}
 module.exports = {
-    createListing,getAllListing,getListing,updateListing,deleteListing,getOnlyListing
+    createListing,getAllListing,getListing,updateListing,deleteListing,getOnlyListing,pagiantion
 }
