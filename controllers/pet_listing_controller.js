@@ -168,8 +168,8 @@ const updateListing = async (req, res) => {
         })
     }
 }
-const pagiantion = async (req,res) => {
-    const resultPerPage = 8;
+const pagination = async (req,res) => {
+    const resultPerPage = 4;
 
     const pageNo = req.query.page;
 
@@ -198,6 +198,38 @@ const pagiantion = async (req,res) => {
         })
     }
 }
+
+const searchProduct = async(req,res)=>{
+    const searchQuery = req.query.q || '';
+    const searchBreed = req.query.breed||'';
+
+    try {
+        const filter = {};
+
+        if(searchQuery){
+            filter.petType = {$regex: searchQuery,$options:'i'};
+
+        }
+        if(searchBreed){
+            filter.breed = {$regex:searchBreed,$options:'i'};
+        }
+        const listings = await petListingModel.find(filter);
+
+        res.status(201).json({
+            'success': true,
+            'message':'Listing fetched',
+            'listings':listings
+        })
+
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({
+            'success': false,
+            'message': 'Server Error'
+        })
+    }
+}
+
 module.exports = {
-    createListing,getAllListing,getListing,updateListing,deleteListing,getOnlyListing,pagiantion
+    createListing,getAllListing,getListing,updateListing,deleteListing,getOnlyListing,pagination,searchProduct
 }

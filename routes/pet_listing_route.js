@@ -9,5 +9,6 @@ router.delete('/delete_listing/:id',listingscontroller.deleteListing)
 router.put('/updatelisting/:id',listingscontroller.updateListing)
 router.get('/get_only_listing',listingscontroller.getOnlyListing)
 
-router.get('/pagination',listingscontroller.pagiantion)
+router.get('/pagination',listingscontroller.pagination)
+router.get('/search',listingscontroller.searchProduct)
 module.exports = router;
