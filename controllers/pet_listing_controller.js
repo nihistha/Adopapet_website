@@ -202,6 +202,7 @@ const pagination = async (req,res) => {
 const searchProduct = async(req,res)=>{
     const searchQuery = req.query.q || '';
     const searchBreed = req.query.breed||'';
+    const searchGender = req.query.gender||'';
 
     try {
         const filter = {};
@@ -212,6 +213,9 @@ const searchProduct = async(req,res)=>{
         }
         if(searchBreed){
             filter.breed = {$regex:searchBreed,$options:'i'};
+        }
+        if(searchGender){
+            filter.breed = {$regex:searchGender,$options:'i'};
         }
         const listings = await petListingModel.find(filter);
 
