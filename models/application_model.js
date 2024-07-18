@@ -17,23 +17,45 @@ const applicationSchema = new mongoose.Schema({
         type : String,
         required : true
     },
+    phonenumber: {
+        type : String,
+        required : true
+    },
     occupation:{
         type: String,
         required: true,
     },
     haveDog: {
         type : Boolean,
+        default: false,
         required : true,
+    },
+    livingSituation:{
+        type: String,
+        required: true,
+    },
+    reasonsForAdopting: {
+        type: String,
+        required: true,
+    },
+    isApproved: {
+        type: Boolean,
+        default: false,
+    },
+    adminMessage: {
+        type: String,
     },
     petId: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'pet',
-        required: true,
+        ref: 'pet'
     },
     userId: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'user',
-        required: true,
+        ref: 'user'
     },
     
 })
+
+const Application = mongoose.model('Application', applicationSchema);
+
+module.exports = Application;

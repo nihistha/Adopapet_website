@@ -45,16 +45,16 @@ const createListing = async(req,res) => {
 
             const newPet = await pet.save()
             res.status(201).json({
-                success:true,
-                message:"New pet added",
+                'success':true,
+                'message':"New pet added",
                 data: newPet
             })
         } catch (error) {
             console.log(error)
             res.json({
-            success : false,
-            message : "Internal server error",
-            error: error
+            'success' : false,
+            'message' : "Internal server error",
+            'error': error
         })
         }
 
@@ -67,14 +67,14 @@ const deleteListing = async (req, res) => {
     try {
         await petListingModel.findByIdAndDelete(id)
         res.status(201).json({
-            success: true,
-            message: "Listing deleted"
+            'success': true,
+            'message': "Listing deleted"
         })
     } catch (error) {
         console.log(error)
         res.status(500).json({
-            success: false,
-            message: "Internal Server Error"
+            'success': false,
+            'message': "Internal Server Error"
         })
     }
 }
@@ -120,8 +120,8 @@ const getListing = async (req, res) => {
     } catch (error) {
         console.log(error)
         res.json({
-            success: false,
-            message: "Server Error"
+            'success': false,
+            'message': "Server Error"
         })
     }
 }
@@ -154,15 +154,15 @@ const updateListing = async (req, res) => {
         const updated = await petListingModel.findByIdAndUpdate(req.params.id, req.body)
 
         res.status(201).json({
-            success: true,
-            message: "Listing Updated",
+            'success': true,
+            'message': "Listing Updated",
             updatedListing: updated
         })
     } catch (error) {
         console.log(error)
         res.status(500).json({
-            success: false,
-            message: "Internal server error",
+            'success': false,
+            'message': "Internal server error",
             error: error
 
         })

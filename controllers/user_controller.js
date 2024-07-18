@@ -34,14 +34,14 @@ const createUser = async (req, res) => {
 
         await newUser.save();
         res.json({
-            success: true,
-            message: "User Created Successfully"
+            'success': true,
+            'message': "User Created Successfully"
         });
     } catch (error) {
         console.error("User creation error:", error);
         res.status(500).json({
-            success: false,
-            message: "Internal Server Error"
+            'success': false,
+            'message': "Internal Server Error"
         });
     }
 
