@@ -5,6 +5,7 @@ const { authGuard } = require('../middleware/authGuard');
 
 router.post('/create',usercontroller.createUser)
 router.post("/login",usercontroller.loginUser)
-router.post('/application',authGuard,applicationcontroller.userApplication)
+router.post('/application/:id',applicationcontroller.userApplication)
+router.get('/get_all_applications',applicationcontroller.getAllApplications)
 
 module.exports = router;
