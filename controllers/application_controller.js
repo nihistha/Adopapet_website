@@ -54,5 +54,22 @@ const getAllApplications = async(req,res)=>{
     }
 }
 
+const getOneApplication = async(req,res)=>{
+    const applicationId = req.params.id;
+    try {
+        const application = await applicationModel.findById(applicationId)
+        res.status(201).json(
+            application
+        )
 
-module.exports={userApplication,getAllApplications}
+
+    } catch (error) {
+        console.log(error)
+        res.json({
+            'success': false,
+            'message': "Server Error"
+        })
+    }
+}
+
+module.exports={userApplication,getAllApplications,getOneApplication}
