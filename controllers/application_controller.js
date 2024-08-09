@@ -72,4 +72,70 @@ const getOneApplication = async(req,res)=>{
     }
 }
 
-module.exports={userApplication,getAllApplications,getOneApplication}
+// Update application
+const updateApplication = async (req, res) => {
+    try {
+        const applicationId = req.params.id;
+        const updates = req.body;
+
+        const updatedApplication = await applicationModel.findByIdAndUpdate(applicationId, updates, { new: true });
+        
+        if (!updatedApplication) {
+            return res.status(404).json({ message: 'Application not found' });
+        }
+
+        res.status(200).json(updatedApplication);
+    } catch (error) {
+        res.status(400).json({ message: error.message });
+    }
+};
+
+const deleteApplication = async (req, res) => {
+
+    const id = req.params.id;
+
+    try {
+        await applicationModel.findByIdAndDelete(id)
+        res.status(201).json({
+            'success': true,
+            'message': "Application deleted"
+        })
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({
+            'success': false,
+            'message': "Internal Server Error"
+        })
+    }
+}
+
+const getApplicationsByUserId = async (req, res) => {
+    try {
+        const userId = req.params.id; // Assuming you're passing the userId as a route parameter
+
+        // Find all applications where the userId matches
+        const applications = await applicationModel.find({ userId: userId });
+
+        if (applications.length === 0) {
+            return res.status(404).json({
+                "success": false,
+                "message": "No applications found for this user"
+            });
+        }
+
+        res.status(200).json({
+            "success": true,
+            "message": "Applications fetched successfully",
+            "applications": applications
+        });
+    } catch (error) {
+        console.error('Error fetching applications:', error);
+        res.status(500).json({
+            "success": false,
+            "message": "Error fetching applications",
+            "error": error.message
+        });
+    }
+};
+
+module.exports={userApplication,getAllApplications,getOneApplication,updateApplication,getApplicationsByUserId}

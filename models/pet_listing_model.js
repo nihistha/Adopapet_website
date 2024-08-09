@@ -32,4 +32,4 @@ const addListingSchema = new mongoose.Schema({
 })
 
 const pet_listing = mongoose.model("pet",addListingSchema);
-module.exports = pet_listing
+module.exports = pet_listing  

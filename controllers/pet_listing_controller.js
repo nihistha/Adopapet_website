@@ -169,7 +169,7 @@ const updateListing = async (req, res) => {
     }
 }
 const pagination = async (req,res) => {
-    const resultPerPage = 4;
+    const resultPerPage = 8;
 
     const pageNo = req.query.page;
 
@@ -203,23 +203,26 @@ const searchProduct = async(req,res)=>{
     const searchQuery = req.query.q || '';
     const searchBreed = req.query.breed||'';
     const searchGender = req.query.gender||'';
+    const searchSize = req.query.size||'';
 
     try {
         const filter = {};
 
         if(searchQuery){
             filter.petType = {$regex: searchQuery,$options:'i'};
-
         }
         if(searchBreed){
             filter.breed = {$regex:searchBreed,$options:'i'};
         }
         if(searchGender){
-            filter.breed = {$regex:searchGender,$options:'i'};
+            filter.gender = {$regex:searchGender,$options:'i'};
+        }
+        if(searchSize){
+            filter.size={$regex:searchSize,$options:'i'};
         }
         const listings = await petListingModel.find(filter);
 
-        res.status(201).json({
+        res.status(200).json({
             'success': true,
             'message':'Listing fetched',
             'listings':listings
