@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken')
 const authGuard  = (req,res,next) =>{
     // 1. get auth headers (content type, authorization)
     console.log(req.headers)
-
+    
     //get authorization
     const authHeader = req.headers.authorization;
 

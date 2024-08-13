@@ -1,8 +1,9 @@
 const applicationModel = require('../models/application_model')
 
 const userApplication = async(req,res)=>{
-    const {name,age,occupation,address,email,phonenumber,haveDog,livingSituation,reasonsForAdopting,petId,userId}= req.body;
-    if(!name ||!age || !occupation || !address || !email || !phonenumber || !haveDog || !livingSituation || !reasonsForAdopting){
+    const {name,age,occupation,address,email,phonenumber,haveDog,livingSituation,reasonsForAdopting,petId}= req.body;
+    console.log(req.body)
+    if(!name ||!age || !occupation || !address || !email || !phonenumber || haveDog === undefined  || !livingSituation || !reasonsForAdopting){
         return res.json({
             'success': false,
             'message': 'Please enter all feilds'
@@ -20,7 +21,7 @@ const userApplication = async(req,res)=>{
             livingSituation,
             reasonsForAdopting,
             petId,
-            userId
+            userId : req.user.id
         });
 
         console.log(user_application);
@@ -111,10 +112,8 @@ const deleteApplication = async (req, res) => {
 
 const getApplicationsByUserId = async (req, res) => {
     try {
-        const userId = req.params.id; // Assuming you're passing the userId as a route parameter
-
         // Find all applications where the userId matches
-        const applications = await applicationModel.find({ userId: userId });
+        const applications = await applicationModel.find({userId: req.user.id});
 
         if (applications.length === 0) {
             return res.status(404).json({
@@ -138,4 +137,4 @@ const getApplicationsByUserId = async (req, res) => {
     }
 };
 
-module.exports={userApplication,getAllApplications,getOneApplication,updateApplication,getApplicationsByUserId}
+module.exports={userApplication,getAllApplications,getOneApplication,updateApplication,getApplicationsByUserId,deleteApplication}

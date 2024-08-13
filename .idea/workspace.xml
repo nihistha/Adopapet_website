@@ -5,10 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="67764d70-4f30-4f03-a173-a6c36b3b7894" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/controllers/application_controller.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/pet_listing_controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/pet_listing_controller.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/user_controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/user_controller.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/application_model.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/application_model.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/application_controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/application_controller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/middleware/authGuard.js" beforeDir="false" afterPath="$PROJECT_DIR$/middleware/authGuard.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/user_routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/user_routes.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,9 +20,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 8
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 8
+}</component>
   <component name="ProjectId" id="2jKvxf5VI4MHYhKnJozBaZGhUiX" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -38,7 +37,8 @@
     "cidr.known.project.marker": "true",
     "dart.analysis.tool.window.visible": "false",
     "git-widget-placeholder": "master",
-    "settings.editor.selected.configurable": "AndroidSdkUpdater"
+    "settings.editor.selected.configurable": "AndroidSdkUpdater",
+    "show.migrate.to.gradle.popup": "false"
   }
 }]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />

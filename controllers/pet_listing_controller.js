@@ -34,7 +34,6 @@ const createListing = async(req,res) => {
             // res.send("Image uploaded")
             const pet = new petListingModel({
                 petName: petName,
-
                 petType : petType,
                 breed: breed,
                 gender: gender,

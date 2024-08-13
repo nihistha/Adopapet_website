@@ -94,7 +94,15 @@ const loginUser = async(req,res)=>{
     }
 }
 
+const getUser = async (req, res) => {
+    const user = await userModel.findById(req.user.id).select("-password -__v ");
+    return res.status(200).json({
+         success: true,
+          data: user });
+  }
+
 module.exports = {
     createUser,
-    loginUser
+    loginUser,
+    getUser
 }
