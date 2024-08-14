@@ -92,9 +92,7 @@ const updateApplication = async (req, res) => {
 };
 
 const deleteApplication = async (req, res) => {
-
     const id = req.params.id;
-
     try {
         await applicationModel.findByIdAndDelete(id)
         res.status(201).json({

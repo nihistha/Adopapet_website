@@ -47,7 +47,8 @@ app.use('/api/user',require('./routes/user_routes'))
 
 //CREATE Admin API
 app.use('/api/pets',require('./routes/pet_listing_route'))
-
+// Payment route
+app.use('/api/payment', require('./routes/donation_route'));
 //creating the server
 app.listen(PORT,()=>{
     console.log(`Server is running on port server ${PORT}`  )

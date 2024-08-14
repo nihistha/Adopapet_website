@@ -39,8 +39,7 @@ const applicationSchema = new mongoose.Schema({
         required: true,
     },
     isApproved: {
-        type: Boolean,
-        default: false,
+        type: String,
     },
     adminMessage: {
         type: String,
