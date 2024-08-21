@@ -134,5 +134,38 @@ const getApplicationsByUserId = async (req, res) => {
         });
     }
 };
+const getApplicationsByUserandpet = async (req, res) => {
+    try {
+        // Find all applications where the userId matches
+        const applications = await applicationModel.find({userId: req.user.id}).populate( "petId");
 
-module.exports={userApplication,getAllApplications,getOneApplication,updateApplication,getApplicationsByUserId,deleteApplication}
+        if (applications.length === 0) {
+            return res.status(404).json({
+                "success": false,
+                "message": "No applications found for this user"
+            });
+        }
+
+        res.status(200).json({
+            "success": true,
+            "message": "Applications fetched successfully",
+            "applications": applications
+        });
+    } catch (error) {
+        console.error('Error fetching applications:', error);
+        res.status(500).json({
+            "success": false,
+            "message": "Error fetching applications",
+            "error": error.message
+        });
+    }
+};
+
+module.exports={userApplication,
+    getAllApplications,
+    getOneApplication,
+    updateApplication,
+    getApplicationsByUserId,
+    deleteApplication,
+    getApplicationsByUserandpet
+}

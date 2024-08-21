@@ -1,6 +1,7 @@
 const userModel = require("../models/user_model")
 const bcrypt = require("bcrypt")
 const jwt = require("jsonwebtoken")
+const nodemailer = require('nodemailer');
 
 const createUser = async (req, res) => {
     console.log(res.data)
@@ -8,7 +9,7 @@ const createUser = async (req, res) => {
 
     //validation
     if(!fullname || !phonenumber || !email || !password){
-        return res.json({
+        return res.status(400).json({
             "sucess" : false,
             "message" : "Please enter all fields"
         })
@@ -103,6 +104,7 @@ const getUser = async (req, res) => {
 
 const updateUser = async(req,res)=>{
     try {
+        updates = req.body;
         const updatedUser = await userModel.findByIdAndUpdate(req.user.id, updates, { new: true });
         
         if (!updatedUser) {
@@ -141,13 +143,13 @@ const forgotPassword = async (req, res) => {
         var transporter = nodemailer.createTransport({
             service: 'gmail',
             auth: {
-                user: 'lakshya69056@gmail.com',
-                pass: 'phqa mzxu clox jbzr'
+                user: 'suyogmanandhar2022@gmail.com',
+                pass: 'esuc ialc qrof xenr'
             }
         });
 
         var mailOptions = {
-            from: 'lakshya69056@gmail.com',
+            from: 'suyogmanandhar2022@gmail.com',
             to: email,
             subject: 'Password Reset OTP',
             text: `Your OTP for password reset is: ${otp}`
@@ -179,7 +181,7 @@ const verifyOtpAndPassword = async (req, res) => {
     }
 
     try {
-        const user = await User.findOne({ email });
+        const user = await userModel.findOne({ email });
         if (!user) {
             return res.status(400).json({ message: 'User not found' });
         }

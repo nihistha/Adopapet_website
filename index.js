@@ -41,15 +41,17 @@ const PORT = process.env.PORT
 app.get('/test',(req,res)=>{
     res.end("Test Api is working")
 })
+const donation_routes = require('./routes/donation_route')
 
 //CREATE USER API
 app.use('/api/user',require('./routes/user_routes'))
 
-//CREATE Admin API
 app.use('/api/pets',require('./routes/pet_listing_route'))
 // Payment route
-app.use('/api/payment', require('./routes/donation_route'));
+app.use('/api/payment',donation_routes);
 //creating the server
 app.listen(PORT,()=>{
     console.log(`Server is running on port server ${PORT}`  )
 })
+
+module.exports = app;

@@ -11,4 +11,6 @@ router.put('/updatelisting/:id',listingscontroller.updateListing)
 
 router.get('/pagination',listingscontroller.pagination)
 router.get('/search',listingscontroller.searchProduct)
+router.get('/searchpets',listingscontroller.searchPets)
+
 module.exports = router;

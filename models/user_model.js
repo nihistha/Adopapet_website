@@ -23,7 +23,15 @@ const user_schema = new mongoose.Schema({
     isAdmin:{
         type : Boolean,
         default : false,
-    }
+    },
+    otpReset: {
+        type: Number,
+        default: null
+      },
+      otpResetExpires: {
+        type: Date,
+        default: null
+      },
 })
 
 const User = mongoose.model("user",user_schema);

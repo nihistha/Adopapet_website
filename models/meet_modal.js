@@ -3,15 +3,13 @@ const mongoose = require("mongoose")
 const scheduleMeetSchema = new mongoose.Schema({
     pet: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Pet',
+    ref:'pet',
     required: true
   },
-
   user: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'User',
+    ref:'user',
     required: true
-
   },
   petName:{
     type:String

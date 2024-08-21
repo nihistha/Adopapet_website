@@ -235,7 +235,59 @@ const searchProduct = async(req,res)=>{
         })
     }
 }
+const searchPets = async (req, res) => {
+    const { search, page, limit, sort } = req.query;
+    const pageNumber = parseInt(page) || 1;
+    const pageSize = parseInt(limit) || 10; // Default page size
+    const sortBy = sort || "createdAt"; // Default sort field (use your preferred default)
 
+    try {
+        let query = {};
+
+        // Construct the search query
+        if (search) {
+            query.productTitle = { $regex: search, $options: "i" }; // Case-insensitive search
+        }
+
+        // Sorting
+        const sortOptions = {};
+        if (sortBy) {
+            const [field, order] = sortBy.split(","); // e.g., "createdAt,desc"
+            sortOptions[field] = order || "asc"; // Default to ascending order if not specified
+        }
+
+        // Fetch products with pagination and sorting
+        const products = await Products.find(query)
+            .sort(sortOptions)
+            .skip((pageNumber - 1) * pageSize)
+            .limit(pageSize);
+
+        // Count total documents matching the query
+        const totalProducts = await Products.countDocuments(query);
+
+        res.status(200).json({
+            success: true,
+            message: "Products searched successfully",
+            products,
+            totalPages: Math.ceil(totalProducts / pageSize),
+        });
+    } catch (error) {
+        console.error("Error searching products:", error);
+        res.status(500).json({
+            success: false,
+            message: "Internal server error",
+            error,
+        });
+    }
+};
 module.exports = {
-    createListing,getAllListing,getListing,updateListing,deleteListing,getOnlyListing,pagination,searchProduct
+    createListing,
+    getAllListing,
+    getListing,
+    updateListing,
+    deleteListing,
+    getOnlyListing,
+    pagination,
+    searchProduct,
+    searchPets
 }
