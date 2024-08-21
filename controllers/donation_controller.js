@@ -65,7 +65,7 @@ exports.verifyPayment = async (req, res, next) => {
       amount,
     });
 
-    // await newInvestor.save();
+    await donation.save();
 
     res.redirect("http://localhost:3000/dashboard");
   } catch (err) {
@@ -84,15 +84,20 @@ exports.createSignature = (message) => {
   return hashInBase64;
 };
 
-exports.getDonations=()=>{
-  try{
-  const donation = donation_model.find()
-  res.status(201).json({
-    "success": true,
-    "message": "Donation fetched successfully",
-    "donations": donation
-})
-} catch (error) {
-console.log("error")
-}
-}
+exports.getDonations = async (req, res) => {
+  try {
+    const donations = await donation_model.find({});
+    res.status(200).json({
+      success: true,
+      message: "Donations fetched successfully",
+      donations: donations
+    });
+  } catch (error) {
+    console.error("Error fetching donations:", error);
+    res.status(500).json({
+      success: false,
+      message: "Failed to fetch donations",
+      error: error.message
+    });
+  }
+};
