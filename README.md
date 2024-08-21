@@ -35,3 +35,10 @@ Authentication
 
 JWS-based Authentication
 
+Technologies
+
+Node.js, Express.js, Mongoose, MongoDB
+
+Auther
+
+Nihira Shresths
