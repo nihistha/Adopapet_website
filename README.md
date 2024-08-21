@@ -35,3 +35,15 @@ Authentication
 
 JWS-based Authentication
 
+
+Environment Variable
+
+mongodb+srv://test:test@cluster0.brlw1k6.mongodb.net/adoptapet
+
+Technologies
+
+Node.js, Express.js, Mongoose, MongoDB
+
+Auther
+
+Nihira Shresths
