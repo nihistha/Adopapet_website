@@ -59,20 +59,6 @@ exports.verifyPayment = async (req, res, next) => {
     const amount = parseFloat(
         decodedData.total_amount.replace(/,/g, ""),
       );
-    // const investedAmount = parseFloat(
-    //   decodedData.total_amount.replace(/,/g, ""),
-    // );
-    // console.log("The investment amount is " + investedAmount);
-
-    // if (!project) {
-    //   return res
-    //     .status(400)
-    //     .json({ message: "Please provide a valid project id" });
-    // }
-
-    // project.investedAmount = project.investedAmount + investedAmount;
-
-    // await project.save();
 
     const donation = new donation_model({
       userId:userId,
@@ -99,6 +85,14 @@ exports.createSignature = (message) => {
 };
 
 exports.getDonations=()=>{
-  const dontion = donation_model.find()
-  
+  try{
+  const donation = donation_model.find()
+  res.status(201).json({
+    "success": true,
+    "message": "Donation fetched successfully",
+    "donations": donation
+})
+} catch (error) {
+console.log("error")
+}
 }
