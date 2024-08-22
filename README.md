@@ -19,3 +19,9 @@ Browse Pets: Explore a wide variety of animals available for adoption.
 Update and Delete: Update and Delete Application 
 
 Mail: Get mail when the application is approved
+
+
+Admin Feature:
+
+Add, Update and Delete Pet Listing
+
