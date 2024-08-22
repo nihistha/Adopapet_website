@@ -5,3 +5,6 @@ Welcome to AdoptAPet, a heartwarming platform dedicated to connecting loving hom
 Key Feature
 
 Apply for Adoption: Easy-to-use application process for potential pet parents.
+
+Donate: Support animals in need through our secure donation system.
+
