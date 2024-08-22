@@ -8,3 +8,4 @@ Apply for Adoption: Easy-to-use application process for potential pet parents.
 
 Donate: Support animals in need through our secure donation system.
 
+Forgot Password: Hassle-free password recovery for user accounts.
