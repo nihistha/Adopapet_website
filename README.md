@@ -11,3 +11,5 @@ Donate: Support animals in need through our secure donation system.
 Forgot Password: Hassle-free password recovery for user accounts.
 
 Schedule a Meet: Arrange meetings with potential pets before making a decision.
+
+Browse Pets: Explore a wide variety of animals available for adoption.
