@@ -1,6 +1,7 @@
 const router = require('express').Router()
 
 const listingscontroller = require("../controllers/pet_listing_controller")
+const { adminGuard } = require('../middleware/authGuard')
 
 router.post('/create',listingscontroller.createListing)
 router.get('/get_single_listing/:id',listingscontroller.getListing)
